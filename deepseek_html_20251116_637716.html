@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tai Mo Shan Woodland Survival Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --primary-light: #4a7c59;
+            --secondary: #8ab661;
+            --accent: #d4e6b5;
+            --light: #f5f9f0;
+            --dark: #1a2e0d;
+            --text: #333333;
+            --text-light: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.9) 0%, rgba(26, 46, 13, 0.9) 100%), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Mission Section */
+        #mission {
+            background-color: white;
+        }
+        
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        /* Ecosystem Section */
+        .ecosystem-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .ecosystem-text {
+            padding-right: 2rem;
+        }
+        
+        .ecosystem-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        
+        /* Abiotic Section */
+        #abiotic {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .abiotic-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .abiotic-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .abiotic-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .abiotic-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        /* Challenges Section */
+        .challenges-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .challenge-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .challenge-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary);
+        }
+        
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Organisms Section */
+        #organisms {
+            background: linear-gradient(to bottom, var(--light) 0%, white 100%);
+        }
+        
+        .organisms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .organism-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .organism-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .organism-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .organism-content {
+            padding: 2rem;
+        }
+        
+        .gordonia-image {
+            background: url('https://images.unsplash.com/photo-1579033462043-0f11a7862f7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+        }
+        
+        .munia-image {
+            background: url('https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+        }
+        
+        /* Q&A Section */
+        .qa-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .question-card {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .question-header {
+            padding: 1.5rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .question-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .question-content.active {
+            padding: 2rem;
+            max-height: 500px;
+        }
+        
+        .answer {
+            background-color: var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .ecosystem-container, .organisms-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .abiotic-container, .challenges-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .abiotic-container, .challenges-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">EcoSurvival</div>
+            <ul class="nav-links">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
+                <li><a href="#abiotic">Abiotic Factors</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#organisms">Organisms</a></li>
+                <li><a href="#qa">Q&A</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>Tai Mo Shan Woodland Survival Guide</h1>
+            <p class="subtitle">Exploring the Resilience of Hong Kong's High-Altitude Ecosystem</p>
+            <a href="#mission" class="btn">Explore the Ecosystem</a>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Mission Section -->
+    <section id="mission">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="mission-content">
+                <p>In this project, our team acted as ecological consultants to create a comprehensive survival guide for the unique high-altitude ecosystem of Tai Mo Shan Woodland. Our mission is to investigate the harsh abiotic conditions and showcase the incredible adaptations of its resident organisms.</p>
+                <p>Through research and analysis, we aim to demonstrate the complex interplay between the ecosystem's environmental challenges and the remarkable survival strategies developed by its flora and fauna.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section id="ecosystem">
+        <div class="container">
+            <h2 class="section-title">Tai Mo Shan Woodland Ecosystem</h2>
+            <div class="ecosystem-container">
+                <div class="ecosystem-text">
+                    <h3>The "Roof of Hong Kong"</h3>
+                    <p><strong>Location:</strong> Tai Mo Shan, the highest peak in Hong Kong (957m), located in the Tai Lam Country Park.</p>
+                    <p><strong>Key Structural Components:</strong></p>
+                    <ul>
+                        <li><strong>Montane Cloud Forest (Summit & Upper Slopes):</strong> Constantly shrouded in mist and clouds, with stunted, wind-shaped trees.</li>
+                        <li><strong>Hillside Secondary Woodlands:</strong> Dominated by hardy native tree species and shrubs, recovering from past fires and logging.</li>
+                        <li><strong>Thick Layer of Leaf Litter & Bryophytes:</strong> The forest floor is covered in decomposing leaves and mosses, crucial for nutrient cycling and moisture retention.</li>
+                    </ul>
+                </div>
+                <div class="ecosystem-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abiotic Factors Section -->
+    <section id="abiotic">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Abiotic Challenges</h2>
+            <div class="abiotic-container">
+                <div class="abiotic-card">
+                    <div class="abiotic-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Strong, Persistent Winds</h3>
+                    <p>The peak is exposed to very high wind speeds, which can physically damage organisms and increase water loss.</p>
+                </div>
+                <div class="abiotic-card">
+                    <div class="abiotic-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>High UV Radiation & Temperature Fluctuations</h3>
+                    <p>Higher altitude means less atmospheric filtration of UV rays. Temperatures can vary dramatically between day and night.</p>
+                </div>
+                <div class="abiotic-card">
+                    <div class="abiotic-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Thin, Infertile, Acidic Soil</h3>
+                    <p>The soil is often shallow, rocky, and low in nutrients due to leaching from heavy rainfall and slow decomposition rates in cooler temperatures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges">
+        <div class="container">
+            <h2 class="section-title">Environmental Challenges</h2>
+            <div class="challenges-container">
+                <div class="challenge-card">
+                    <h3>From Strong Winds</h3>
+                    <ul>
+                        <li>Physical Damage & Uprooting</li>
+                        <li>Desiccation (Drying Out)</li>
+                        <li>Limited Pollination Opportunities</li>
+                    </ul>
+                </div>
+                <div class="challenge-card">
+                    <h3>From High UV & Temperature Fluctuation</h3>
+                    <ul>
+                        <li>Cell & DNA Damage</li>
+                        <li>Thermal Stress & Frost Risk</li>
+                        <li>Increased Metabolic Demands</li>
+                    </ul>
+                </div>
+                <div class="challenge-card">
+                    <h3>From Thin, Infertile Soil</h3>
+                    <ul>
+                        <li>Nutrient Scarcity</li>
+                        <li>Poor Water Retention</li>
+                        <li>Limited Root Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organisms Section -->
+    <section id="organisms">
+        <div class="container">
+            <h2 class="section-title">Adaptive Organisms</h2>
+            <div class="organisms-container">
+                <div class="organism-card">
+                    <div class="organism-image gordonia-image"></div>
+                    <div class="organism-content">
+                        <h3>Hong Kong Gordonia (Gordonia axillaris)</h3>
+                        <p><strong>Plant Survivor: The Hardy Evergreen</strong></p>
+                        <p><strong>Challenges it Faces:</strong> Strong winds (physical damage, desiccation), nutrient-poor soil.</p>
+                        <p><strong>Morphological Adaptation: Low, Dense Canopy & Thick, Leathery Leaves</strong></p>
+                        <p><strong>Evaluation:</strong> The tree often grows with a stunted, spreading form rather than tall and thin. This low center of gravity and dense structure reduces wind resistance, preventing breakage and uprooting. The thick, waxy cuticle on its leathery leaves (sclerophyllous) reduces water loss through transpiration, combating the drying effect of the wind.</p>
+                    </div>
+                </div>
+                <div class="organism-card">
+                    <div class="organism-image munia-image"></div>
+                    <div class="organism-content">
+                        <h3>Chinese Munia (Lonchura punctulata)</h3>
+                        <p><strong>Animal Survivor: The High-Altitude Forager</strong></p>
+                        <p><strong>Challenges it Faces:</strong> Temperature fluctuations, strong winds during flight, and finding food in a nutrient-scarce environment.</p>
+                        <p><strong>Physiological & Behavioral Adaptation: Thermoregulation & Sheltered Nesting</strong></p>
+                        <p><strong>Evaluation:</strong> Birds are endotherms. The Chinese Munia can fluff its feathers to trap a layer of air for insulation against the cold nights on Tai Mo Shan. Behaviorally, it builds a domed nest with a side entrance in dense thickets or shrubs. This complex structure provides crucial shelter from the wind and rain, protecting both adults and chicks from the elements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Q&A Section -->
+    <section id="qa">
+        <div class="container">
+            <h2 class="section-title">Interactive Q&A</h2>
+            <div class="qa-container">
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion(1)">
+                        <h3>Question 1: Morphological Adaptations</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="question-content" id="question1">
+                        <p>"We explained that the Hong Kong Gordonia has a low, dense canopy to withstand strong winds. Looking at other common woodland plants like the <strong>Bamboo</strong>, what is a key morphological adaptation it has (related to its stem) that also allows it to survive these windy conditions without breaking?"</p>
+                        <div class="answer">
+                            <p><strong>Answer:</strong> Bamboo has a hollow, segmented stem (culm). This structure provides excellent flexibility and high strength-to-weight ratio, allowing it to bend and sway in the wind rather than snap.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-header" onclick="toggleQuestion(2)">
+                        <h3>Question 2: Physiological/Behavioral Adaptations</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="question-content" id="question2">
+                        <p>"Due to climate change, assume Tai Mo Shan experiences more frequent and severe droughts, worsening the challenge of water scarcity. Based on the Gordonia's adaptations, what is one physiological process it might enhance, or one behavioral (for a plant, this means a change in growth pattern) strategy it might employ to conserve even more water?"</p>
+                        <div class="answer">
+                            <p><strong>Answer:</strong></p>
+                            <ul>
+                                <li><strong>Physiological:</strong> It could further reduce the number of stomata on its leaves or close its stomata during the hottest part of the day to minimize water loss.</li>
+                                <li><strong>Behavioral/Growth:</strong> It could invest more in its root system to grow deeper or wider in search of water, or it could drop some of its older leaves to reduce the total surface area for transpiration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">EcoSurvival Guide</div>
+                    <p>A comprehensive exploration of the Tai Mo Shan Woodland ecosystem, highlighting the remarkable adaptations of its flora and fauna to survive in challenging high-altitude conditions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#mission">Our Mission</a></li>
+                        <li><a href="#ecosystem">The Ecosystem</a></li>
+                        <li><a href="#abiotic">Abiotic Factors</a></li>
+                        <li><a href="#organisms">Adaptive Organisms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>References</h4>
+                    <ul>
+                        <li><a href="#">Hong Kong Biodiversity Database</a></li>
+                        <li><a href="#">AFCD Resources</a></li>
+                        <li><a href="#">Hong Kong Herbarium</a></li>
+                        <li><a href="#">Bird Watching Society</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Y.W.C.A. Hioe Tjo Yoeng College | S.5 Biology | Ch.19 Group Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Q&A questions
+        function toggleQuestion(num) {
+            const question = document.getElementById(`question${num}`);
+            question.classList.toggle('active');
+            
+            // Rotate chevron icon
+            const icon = question.previousElementSibling.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                nav.style.padding = '5px 0';
+            } else {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                nav.style.padding = '15px 0';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
